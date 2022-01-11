@@ -1,3 +1,10 @@
+films/
+annotations/
+statistics/
+visualizations/
+metadata.csv
+metadata.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
