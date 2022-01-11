@@ -5,6 +5,7 @@ E.g. {"inPoint": 1, "outPoint": 257, "cameraMovement": "NA"}, {"inPoint": 1, "ou
 becomes {"inPoint": 1, "outPoint": 257, "cameraMovement": "NA", "shotType": "LS"}
 
 This makes parsing the JSON files easier.
+Also removes 1 from inPoint and outPoint s.t. the first frame is 0.
 """
 
 import os, glob, json
@@ -37,12 +38,16 @@ for annotation_path in annotation_paths:
             shots_new.append(shot)
 
     # Check if the shots all contain cameraMovement and shotType
+    # Remove 1 from inPoint and outPoint
     for shot in shots_new:
         if "shotType" not in shot:
             raise ValueError("shotType not found")
         elif "cameraMovement" not in shot:
             shot["cameraMovement"] = "NA"
 
+        shot["inPoint"] = shot["inPoint"] - 1
+        shot["outPoint"] = shot["outPoint"] - 1
+        
     assert len(shots_new) >= (len(shots_old) / 2.0) and len(shots_new) <= len(shots_old)
 
     # print(shots_new)
