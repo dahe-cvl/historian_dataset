@@ -6,6 +6,9 @@ path_films = r"./films"
 path_vis = r"./visualizations"
 path_stats = r"./statistics"
 
+format = ".png"
+dpi = 300
+
 ##########################
 # MAIN SECTION
 ##########################
@@ -46,4 +49,4 @@ ax.hist(film_lengths, bins=25, linewidth=0.5, edgecolor="white")
 
 ax.set_xlabel('Seconds')
 ax.set_ylabel('Number of Films')
-plt.savefig(os.path.join(path_vis, "filmlength.png"))
+plt.savefig(os.path.join(path_vis, "filmlength" + format), dpi=dpi)
