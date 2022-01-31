@@ -11,8 +11,8 @@ path_manual_annotations = r"./annotations/manual"
 path_metadata_csv = "metadata.csv"
 path_metadata_json = "metadata.json"
 
-# 97 (NARA) + 3 (EFA) + 8 (LOC) = 108 films in total
-total_nr_films = 108
+# 111 (NARA) + 3 (EFA) + 8 (LOC) = 108 films in total
+total_nr_films = 111 + 3  + 8
 duplicates = 9
 nr_films = total_nr_films - duplicates
 

@@ -152,6 +152,17 @@ def plot_type_vs_inPoint(df, use_log_scaling):
             store_plot(target_cat + "_vs_inPoint(histogram)")
         plt.close()
 
+def plot_duration_vs_inPoint(df):
+    fig, ax = plt.subplots()
+    df2 = df.sort_values(by=['inPoint'])
+    plt.scatter(df["inPoint"], df["duration"], s=0.2)
+    ax.set_yscale('log')
+    ax.set_xlabel('inPoint')
+    ax.set_ylabel('Shot Duration')
+    ax.set_title("Shot Duration vs inPoint")
+    store_plot("inPoint_vs_duration")
+
+
 # PLOT
 
 # plot_type_vs_shotduration(df, True)
@@ -159,11 +170,10 @@ def plot_type_vs_inPoint(df, use_log_scaling):
 # plot_nr_shots(df)
 # plot_type_vs_inPoint(df, True)
 # plot_type_vs_inPoint(df, False)
+plot_duration_vs_inPoint(df)
 
 # TEXT STATISTICS
 
-print(statistics_string)
-with open(os.path.join(path_stats, prefix + "_shots.txt"), 'w') as f:
-    f.write(statistics_string)
-
-print(df)
+# print(statistics_string)
+# with open(os.path.join(path_stats, prefix + "_shots.txt"), 'w') as f:
+#     f.write(statistics_string)
