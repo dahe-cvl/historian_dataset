@@ -11,7 +11,7 @@ path_manual_annotations = r"./annotations/manual"
 path_vis = r"./visualizations"
 path_stats = r"./statistics"
 
-format = ".png"
+format = ".pdf"
 dpi = 300
 barplot_width = 0.35
 

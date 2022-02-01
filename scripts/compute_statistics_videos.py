@@ -6,7 +6,7 @@ path_films = r"./films"
 path_vis = r"./visualizations"
 path_stats = r"./statistics"
 
-format = ".png"
+format = ".pdf"
 dpi = 300
 
 ##########################
@@ -45,6 +45,9 @@ statistics_string += "\nNumber of films: {0}".format(len(films))
 statistics_string += "\nTotal duration: {0}s".format(sum(film_lengths))
 statistics_string += "\nFilm length avg.: {0}s".format(np.mean(film_lengths))
 statistics_string += "\nFilm length std.: {0}s".format(np.std(film_lengths))
+statistics_string += "\nFilm length min.: {0}s".format(min(film_lengths))
+statistics_string += "\nFilm length max.: {0}s".format(max(film_lengths))
+
 statistics_string += f"\n Total nr of frames: {sum(film_frames)}"
 
 print(statistics_string)
@@ -54,7 +57,7 @@ with open(os.path.join(path_stats, "films.txt"), 'w') as f:
 
 # Plot filme length
 fig, ax = plt.subplots()
-ax.hist(film_lengths, bins=25, linewidth=0.5, edgecolor="white")
+ax.hist(film_lengths, bins=50, linewidth=0.5, edgecolor="white")
 
 ax.set_xlabel('Seconds')
 ax.set_ylabel('Number of Films')

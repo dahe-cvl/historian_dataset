@@ -1,12 +1,14 @@
 """
 Used to evaluate the quality of the automatic annotation process.
-Extracts n shots with a given shot type
+Extracts a percentage of shots with a given shot type
 """
 
 import argparse
 import glob
 import os
 import json
+import math
+import random
 
 import numpy as np
 import cv2
@@ -15,7 +17,7 @@ from tqdm import tqdm
 parser = argparse.ArgumentParser()
 
 parser.add_argument('type', nargs=1, type=str, default='LS',)
-parser.add_argument('number', nargs=1, type=int, default=50,)
+parser.add_argument('percentage', nargs=1, type=float, default=0.1,)
 
 args = parser.parse_args()
 
@@ -30,9 +32,11 @@ annotations_path = glob.glob(os.path.join(path_auto_annotations, "*-shot_annotat
 shots = []
 
 target_type = args.type[0]
+percentage = args.percentage[0]
 
 # Set seeds to ensure reproducibility
 np.random.seed(0)
+random.seed(0)
 
 # Collect shots
 for path in annotations_path:
@@ -50,7 +54,8 @@ for path in annotations_path:
                 "shotType": shot["shotType"]})
 
 # Select
-selected_shots = np.random.choice(shots, size=args.number, replace=False)
+nr = math.ceil(len(shots) * percentage)
+selected_shots = np.random.choice(shots, size=nr, replace=False)
 print(f"Selected {len(selected_shots)} out of {len(shots)} shots with correct type")
 
 # Create output dir
