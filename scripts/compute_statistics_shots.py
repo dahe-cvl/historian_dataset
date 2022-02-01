@@ -31,7 +31,7 @@ def store_plot(visualizaion_name):
     path =  os.path.join(path_vis, prefix + "_" + visualizaion_name + format)
     plt.savefig(path, dpi=dpi)
 
-json_paths = glob.glob(os.path.join(path_annotations, "*.json"))
+json_paths = glob.glob(os.path.join(path_annotations, "*-shot_annotations.json"))
 all_shots = []
 movies = []
 for path in json_paths:
@@ -45,12 +45,16 @@ nr_shots_per_movie = list(map(lambda shots: len(shots), movies))
 df = pd.DataFrame.from_records(all_shots)
 df['duration'] = df["outPoint"] - df["inPoint"]
 
+
+
 statistics_string = ""
 statistics_string += "Total number of shots: {0}".format(len(all_shots))
 statistics_string += "\nNr shots / film avg.: {0}".format(np.mean(nr_shots_per_movie))
 statistics_string += "\nNr shots / film std.: {0}".format(np.std(nr_shots_per_movie))
 
-for target_cat in ["shotType", "cameraMovement"]:
+for target_cat in ["shotType"]:
+# for target_cat in ["shotType", "cameraMovement"]:
+
     statistics_string += "\n\n" + target_cat
     for category in df[target_cat].unique():
         nr = df.loc[df[target_cat] == category].shape[0]
@@ -60,7 +64,9 @@ for target_cat in ["shotType", "cameraMovement"]:
 
 # Plot stc / cmc vs shot duration
 def plot_type_vs_shotduration(df, use_log_scaling):
-    for target_cat in ["shotType", "cameraMovement"]:
+    for target_cat in ["shotType"]:
+
+    # for target_cat in ["shotType", "cameraMovement"]:
         means = []
         medians = []
         stds = []
@@ -122,7 +128,9 @@ def plot_nr_shots(df):
 
 # Plot stc / cmc vs shot starting point
 def plot_type_vs_inPoint(df, use_log_scaling):
-    for target_cat in ["shotType", "cameraMovement"]:
+    for target_cat in ["shotType"]:
+
+    # for target_cat in ["shotType", "cameraMovement"]:
         means = []
         medians = []
         stds = []
@@ -165,15 +173,15 @@ def plot_duration_vs_inPoint(df):
 
 # PLOT
 
-# plot_type_vs_shotduration(df, True)
-# plot_type_vs_shotduration(df, False)
+plot_type_vs_shotduration(df, True)
+plot_type_vs_shotduration(df, False)
 # plot_nr_shots(df)
-# plot_type_vs_inPoint(df, True)
-# plot_type_vs_inPoint(df, False)
+plot_type_vs_inPoint(df, True)
+plot_type_vs_inPoint(df, False)
 plot_duration_vs_inPoint(df)
 
 # TEXT STATISTICS
 
-# print(statistics_string)
-# with open(os.path.join(path_stats, prefix + "_shots.txt"), 'w') as f:
-#     f.write(statistics_string)
+print(statistics_string)
+with open(os.path.join(path_stats, prefix + "_shots.txt"), 'w') as f:
+    f.write(statistics_string)
