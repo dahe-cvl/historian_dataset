@@ -65,9 +65,9 @@ for film in film_list:
             assert len(corresponding_shot) == 1
 
             camera_annotations.append({
-            "SID": corresponding_shot[0]["shotId"],
-            # Note that SID in the CMCs is actually CID (see below)
-            "CID": int(annotation["sid"]),
+            "shotId": corresponding_shot[0]["shotId"],
+            # Note that SID in the CMCs is actually cmId (see below)
+            "cmId": int(annotation["sid"]),
             "Start": annotation["start"],
             "Stop": annotation["stop"],
             "class_name": annotation["class_name"]})
@@ -80,7 +80,6 @@ for film in film_list:
         json.dump(camera_annotations, outfile)
 
     # Store snippet of film
-
     print(path_film, os.path.join(path_tiny_films, film))
     store_snippet(path_film, os.path.join(path_tiny_films, film), 0, last_frame)
 
