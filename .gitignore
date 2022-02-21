@@ -2,9 +2,15 @@ films/
 annotations/
 statistics/
 visualizations/
+historian_dataset_v1_tiny_pre/
+tiny_dataset_old/
+tmp_cmc_sequences/
+tmp_overscan_films/
+eval_cmc/
+Evaluation_STC/
 metadata.csv
 metadata.json
-
+Manual_Film_List_Overall_copy.xlsx
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
