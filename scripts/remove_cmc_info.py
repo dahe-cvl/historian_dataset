@@ -37,12 +37,12 @@ for path in [path_auto_annotations, path_manual_annotations]:
                 shotId += 1
 
 
-        # Manuel annotations
+        # Manual annotations
         else:
             for annotation in ann_list_old:
             #     # Skip CMC
                 if annotation["value"] in ["PAN", "TILT"]:
-                    print(path)
+                    continue
 
                 ann_list_new.append({
                     "shotId": shotId,
