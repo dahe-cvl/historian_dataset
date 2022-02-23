@@ -11,10 +11,8 @@ path_manual_annotations = r"./annotations/manual"
 path_metadata_csv = "metadata.csv"
 path_metadata_json = "metadata.json"
 
-# 111 (NARA) + 3 (EFA) + 8 (LOC) = 108 films in total
-total_nr_films = 111 + 3  + 8
-duplicates = 9
-nr_films = total_nr_films - duplicates
+# 82 films
+nr_films = 82
 
 ##########################
 # MAIN SECTION
@@ -26,8 +24,11 @@ annotations_manual = glob.glob(os.path.join(path_manual_annotations, "*.json"))
 
 # Check if we have the correct number of files
 assert len(films) == nr_films
-assert len(annotations_auto) == nr_films
-assert len(annotations_manual) == nr_films
+
+# Either we have one annotation per film
+# or two per film if we have already created the $vid-shot_annotations.json files
+assert len(annotations_auto) == nr_films or len(annotations_auto) == 2*nr_films
+assert len(annotations_manual) == nr_films or len(annotations_manual) == 2*nr_films
 assert os.path.isfile(path_metadata_csv)
 assert os.path.isfile(path_metadata_json)
 print("We have the correct number of files")
