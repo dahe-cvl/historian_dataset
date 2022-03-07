@@ -51,8 +51,8 @@ def main():
             "Stop": annotation["stop"],
             "class_name": annotation["class_name"]})
 
-        # print(camera_annotations)
-        # quit()
+        with open(os.path.join(path_cmc_output, f"{vid}-sequence_annotations.json"), 'w') as outfile:
+            json.dump(camera_annotations, outfile, indent=4)
 
 
 if __name__ == "__main__":
