@@ -1,7 +1,13 @@
 """
 Creates a video which visualizes the automatic annotations for a given video.
 Run with
-    python scripts/visualize_annotation.py VID
+    python scripts/visualize_annotation.py $VID $Frames
+
+    Where $VID is the video idea (for example 427)
+    The optional $Frames paramter is the distance between rendered frames. 
+        For example for 10 this means that every tenth frame gets rendered.
+        This makes the resulting video files significantly smaller.
+        The default value is 1, meaning that every frame gets rendered
 """
 
 import argparse
@@ -15,7 +21,9 @@ from itertools import count
 path_films = r"./films"
 path_shot_annotations = r"./annotations/automatic"
 path_cmc_annotations = r"./annotations/camera_annotations_manual"
+path_osd_annotations = r"./annotations/overscan_manual"
 path_output = r"./visualizations"
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -28,7 +36,10 @@ def main():
 
     path_shot_annotation = os.path.join(path_shot_annotations, f"{args.vid}-shot_annotations.json")
     path_cmc_annotation = os.path.join(path_cmc_annotations, f"{args.vid}-sequence_annotations.json")
+    path_osd_annotation = os.path.join(path_osd_annotations, f"{args.vid}-overscan_annotations.json")
     path_film = list(glob.glob(os.path.join(path_films, f"{args.vid}*.m4v")))
+
+    has_osd_annotation = os.path.isfile(path_osd_annotation)
 
     print(path_film)
     assert len(path_film) == 1
@@ -40,7 +51,13 @@ def main():
     with open(path_cmc_annotation) as file:
         cms = json.load(file)
 
-    print(shots, cms)
+    if has_osd_annotation:
+        with open(path_osd_annotation) as file:
+            osd = json.load(file)
+
+        osd.sort(key=lambda o: int(o["meta_info"]["frmId"]))
+    else:
+        print("No OSD annotations found for this video")
 
     tab = "             "
 
@@ -82,10 +99,30 @@ def main():
             else:
                 next_shot_in = "N/A"
 
+            if has_osd_annotation:
+                relevant_osd = list(filter(lambda o: int(o["meta_info"]["frmId"]) <= frame, osd))
+
+                # If there exists an OSD annotation before the current frame we use that
+                if len(relevant_osd) > 0:
+                    relevant_osd.sort(key=lambda o: int(o["meta_info"]["frmId"]), reverse=True)
+                    relevant_osd = relevant_osd[0]
+                # Otherwise we use the earliest OSD (they are sorted by frame)
+                else:
+                    relevant_osd = osd[0]
+
+                for region in relevant_osd["regions"]:
+                    pts = np.array([[point["x"], point["y"]] for point in region["points"]], np.int32)
+                    pts = pts.reshape((-1,1,2))
+                    if region["type"] == "POLYGON":
+                        cv2.polylines(img,[pts],True,(0,255,255),2)
+                    else:
+                        cv2.polylines(img,[pts],True,(255,255,0),2)
+
             # Create image and store it
             white_bar = np.zeros([25, img.shape[1], 3],dtype=np.uint8)
             white_bar.fill(255)
-            cv2.putText(white_bar,f"Frame: {frame}{tab}Camera movement: {camera_movement}{tab}Shot type: {shot_type}{tab}Shot length: {shot_length}{tab}Next shot in {next_shot_in}", (0,15), cv2.FONT_HERSHEY_DUPLEX, 0.5, [0, 0, 255], 2, cv2.LINE_AA)
+            cv2.putText(white_bar,f"Frame: {frame}{tab}Camera movement: {camera_movement}{tab}Shot type: {shot_type}{tab}Shot length: {shot_length}{tab}Next shot in {next_shot_in}", 
+                (0,15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, [0, 0, 255], 1, cv2.LINE_AA)
             img = np.vstack([white_bar, img])
             out.write(img)
         frame += 1
