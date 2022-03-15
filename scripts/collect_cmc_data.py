@@ -4,7 +4,7 @@
 """
 
 path_manual_annotations = r"./annotations/manual"
-path_camera_annotations = r"./eval_cmc/annotations_per_vid_12022022"
+path_camera_annotations = r"./eval_cmc/all_annotations_per_vid_09032022"
 path_cmc_output = r"./annotations/camera_annotations_manual"
 
 import os
@@ -36,7 +36,7 @@ def main():
         # Collect camera annotations
         camera_annotations = []
         for annotation in all_camera_annotations:
-            corresponding_shot = list(filter(lambda shot: shot["inPoint"] <= int(annotation["start"]) and shot["outPoint"] >= int(annotation["stop"]), manual_annotations))
+            corresponding_shot = list(filter(lambda shot: shot["inPoint"] <= int(annotation["start"]) - 1 and shot["outPoint"] >= int(annotation["stop"]) - 1, manual_annotations))
             # print(annotation)
             # print(corresponding_shot)
             if not len(corresponding_shot) == 1:
@@ -47,8 +47,8 @@ def main():
             "shotId": corresponding_shot[0]["shotId"],
             # Note that SID in the CMCs is actually cmId (see below)
             "cmId": int(annotation["sid"]),
-            "Start": annotation["start"],
-            "Stop": annotation["stop"],
+            "Start": int(annotation["start"]) - 1,
+            "Stop": int(annotation["stop"]) - 1,
             "class_name": annotation["class_name"]})
 
         with open(os.path.join(path_cmc_output, f"{vid}-sequence_annotations.json"), 'w') as outfile:
