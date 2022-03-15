@@ -11,6 +11,11 @@ Evaluation_STC/
 metadata.csv
 metadata.json
 Manual_Film_List_Overall_copy.xlsx
+films_old/
+annotations_old/
+HISTORIAN_2022-02-19.xlsx
+metadata_old.*
+SUS_SS2022_object_detection_dataset/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
