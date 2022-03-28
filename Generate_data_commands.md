@@ -42,12 +42,14 @@ Transform annotated OSD data into the required format
 
 # Statistics & Evaluation
 ```python scripts/compute_statistics_shots.py```
+
 ```python scripts/compute_statistics_videos.py```
+
 ```python scripts/sbd_eval.py```
 
 # Visualization
 To visualize the annotations on a video:
 ```python scripts/visualize_annotation.py VID (#FRAMES)```
-VID is the ID of the video to visualize (e.g. 8332)
-#FRAMES is an optional parameter that describes how many frames to output.
+- VID is the ID of the video to visualize (e.g. 8332)
+- #FRAMES is an optional parameter that describes how many frames to output.
   For example 2 will mean that every second frame will be written (default: 1)
