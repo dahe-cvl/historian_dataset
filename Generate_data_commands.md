@@ -22,7 +22,7 @@ Running the following commands on vhh_core will collect the raw data from VhhMMS
 
 # Preparing Shot + Film Data
 7. Transform raw annotation data to desired format
-````python scripts/prepare_raw_annotation_results.py```
+```python scripts/prepare_raw_annotation_results.py```
 
 8. Remove files without "shot-annotation" from annotations/manual and annotations/automatic
 9. (optional) Check if you lost any files
