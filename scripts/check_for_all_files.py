@@ -3,16 +3,15 @@ Checks if all necessary files are in the dataset
 Run with "python scripts/check_for_all_files.py"
 """
 
-import os, glob, json
+import os, glob
 
 path_films = r"./films"
 path_auto_annotations = r"./annotations/automatic"
 path_manual_annotations = r"./annotations/manual"
 path_metadata_csv = "metadata.csv"
-path_metadata_json = "metadata.json"
 
-# 82 films
-nr_films = 82
+# 77 films
+nr_films = 77
 
 ##########################
 # MAIN SECTION
@@ -30,7 +29,6 @@ assert len(films) == nr_films
 assert len(annotations_auto) == nr_films or len(annotations_auto) == 2*nr_films
 assert len(annotations_manual) == nr_films or len(annotations_manual) == 2*nr_films
 assert os.path.isfile(path_metadata_csv)
-assert os.path.isfile(path_metadata_json)
 print("We have the correct number of files")
 
 # Check that we have an annotation for every film
@@ -49,12 +47,9 @@ print("There exist annotations for every film")
 # Check if every film is in the metadata files
 with open(path_metadata_csv, "r") as f:
     lines_from_csv = f.readlines()
-with open(path_metadata_json) as f:
-    list_from_json = json.load(f)
 
 for film_id in film_ids:
-    assert len(list(filter(lambda line: line[0:4] == film_id, lines_from_csv))) == 1
-    assert len(list(filter(lambda dict: dict["id"] == int(film_id), list_from_json))) == 1
+    assert len(list(filter(lambda line: line.split(',')[1] == film_id, lines_from_csv))) == 1
 
 print("Every film is mentioned once in each metadata file")
 
