@@ -22,7 +22,7 @@ Running the following commands on vhh_core will collect the raw data from VhhMMS
 
 # Preparing Shot + Film Data
 7. Transform raw annotation data to desired format
-````python scripts/prepare_raw_annotation_results.py```
+```python scripts/prepare_raw_annotation_results.py```
 
 8. Remove files without "shot-annotation" from annotations/manual and annotations/automatic
 9. (optional) Check if you lost any files
@@ -42,6 +42,7 @@ Transform annotated OSD data into the required format
 
 # Statistics & Evaluation
 ```python scripts/compute_statistics_shots.py```
+
 ```python scripts/compute_statistics_videos.py```
 ```python scripts/sbd_eval.py > Evaluation/sbd.txt```
 ```python scripts/stc_eval.py > Evaluation/stc.txt```
@@ -49,6 +50,6 @@ Transform annotated OSD data into the required format
 # Visualization
 To visualize the annotations on a video:
 ```python scripts/visualize_annotation.py VID (#FRAMES)```
-VID is the ID of the video to visualize (e.g. 8332)
-#FRAMES is an optional parameter that describes how many frames to output.
+- VID is the ID of the video to visualize (e.g. 8332)
+- #FRAMES is an optional parameter that describes how many frames to output.
   For example 2 will mean that every second frame will be written (default: 1)
