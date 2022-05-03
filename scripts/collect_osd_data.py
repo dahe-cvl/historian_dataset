@@ -2,10 +2,13 @@
 Loads the tool generated overscan detection data and transforms it into the required format.
 """
 
-raw_data_path = r"./tmp_overscan_films/overscan_annotations"
+raw_data_paths = [
+                    r"./ICIP_Overscans/part1/annotations_final",
+                    r"./ICIP_Overscans/part2/annotations"
+                    ]
 output_path = r"./annotations/overscan_manual"
 films_path = r"./films"
-shots_path = r"./annotations/automatic"
+shots_path = r"./annotations/manual"
 
 import os
 import json
@@ -17,21 +20,22 @@ def main():
 
     frame_annotations = {}
 
-    for file in glob.glob(os.path.join(raw_data_path, "*.json")):
-        with open(file) as data:
-            frame_annotation = json.load(data)
+    for raw_data_path in raw_data_paths:
+        for file in glob.glob(os.path.join(raw_data_path, "*.json")):
+            with open(file) as data:
+                frame_annotation = json.load(data)
 
-            # path without file ending
-            path_to_frame = os.path.splitext(frame_annotation["asset"]["path"])[0]
-            vid, frame = os.path.split(path_to_frame)[-1].split("_")
-            vid = int(vid)
+                # path without file ending
+                path_to_frame = os.path.splitext(frame_annotation["asset"]["path"])[0]
+                vid, frame = os.path.split(path_to_frame)[-1].split("_")
+                vid = int(vid)
 
-            annotation = (int(frame), frame_annotation)
+                annotation = (int(frame), frame_annotation)
 
-            if vid not in frame_annotations:
-                frame_annotations[vid] = [annotation]
-            else:
-                frame_annotations[vid].append(annotation)
+                if vid not in frame_annotations:
+                    frame_annotations[vid] = [annotation]
+                else:
+                    frame_annotations[vid].append(annotation)
 
     # print(frame_annotations)
 
@@ -41,6 +45,7 @@ def main():
 
         # Get film name
         films = glob.glob(os.path.join(films_path, f"{vid}*.m4v"))
+        print(vid, "\n", films)
         assert len(films) == 1
         film_name = os.path.split(films[0])[-1]
 

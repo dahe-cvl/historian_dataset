@@ -84,16 +84,3 @@ print(f"Total videos checked: {nr_non_empty_manual_annotations}")
 
 print(f"tp: {tp}, tn: {tn} fp: {fp}, fn: {fn}")
 compute_metrics(tp, tn, fp, fn)
-
-
-videos_with_manual_annotations = []
-for vid in vids_with_manual_annotations:
-    video_paths = glob.glob(os.path.join(path_videos, f"{vid}*.m4v"))
-    # Assert there exists exactly one film for the given video ID
-    assert len(video_paths) == 1
-    videoname = os.path.split(video_paths[0])[-1]
-    videos_with_manual_annotations.append(videoname)
-
-with open(path_manual_annotations_films, "w") as file:
-    for videoname in videos_with_manual_annotations:
-        file.write(f"{videoname}\n")

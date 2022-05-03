@@ -10,8 +10,7 @@ path_auto_annotations = r"./annotations/automatic"
 path_manual_annotations = r"./annotations/manual"
 path_metadata_csv = "metadata.csv"
 
-# 77 films
-nr_films = 77
+nr_films = 98
 
 ##########################
 # MAIN SECTION
@@ -32,8 +31,8 @@ assert os.path.isfile(path_metadata_csv)
 print("We have the correct number of files")
 
 # Check that we have an annotation for every film
-annotations_auto_just_id = [os.path.split(path)[-1].split(".")[0] for path in annotations_auto]
-annotations_manual_just_id = [os.path.split(path)[-1].split(".")[0] for path in annotations_manual]
+annotations_auto_just_id = [os.path.split(path)[-1][0:4] for path in annotations_auto]
+annotations_manual_just_id = [os.path.split(path)[-1][0:4] for path in annotations_manual]
 
 film_ids = [os.path.split(path_film)[-1].split("_")[0] for path_film in films]
 

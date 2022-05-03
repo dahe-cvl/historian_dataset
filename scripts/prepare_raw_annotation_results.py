@@ -8,9 +8,8 @@ import os
 import glob
 import json
 
-path_auto_annotations = r"./annotations/automatic"
-path_manual_annotations = r"./annotations/manual"
-keys_to_keep = ["inPoint", "outPoint", "shotType", "isConfirmed", "value", "label"]
+path_auto_annotations = r"./annotations/automatic/"
+path_manual_annotations = r"./annotations/manual/"
 
 for path in [path_auto_annotations, path_manual_annotations]:
     annotations_path = glob.glob(os.path.join(path, "*.json"))

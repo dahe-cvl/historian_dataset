@@ -4,7 +4,7 @@ Compute video statistics like the average video length
 
 path_films = r"./films"
 path_vis = r"./visualizations"
-path_stats = r"./statistics"
+path_stats = r"./Evaluation"
 
 format = ".pdf"
 dpi = 300
@@ -40,19 +40,18 @@ for film in films:
     film_lengths.append(get_length(film))
     film_frames.append(get_nr_frames(film))
 
-statistics_string = ""
-statistics_string += "\nNumber of films: {0}".format(len(films))
+statistics_string = "Number of films: {0}".format(len(films))
 statistics_string += "\nTotal duration: {0}s".format(sum(film_lengths))
 statistics_string += "\nFilm length avg.: {0}s".format(np.mean(film_lengths))
 statistics_string += "\nFilm length std.: {0}s".format(np.std(film_lengths))
 statistics_string += "\nFilm length min.: {0}s".format(min(film_lengths))
 statistics_string += "\nFilm length max.: {0}s".format(max(film_lengths))
 
-statistics_string += f"\n Total nr of frames: {sum(film_frames)}"
+statistics_string += f"\nTotal nr of frames: {sum(film_frames)}"
 
 print(statistics_string)
 
-with open(os.path.join(path_stats, "films.txt"), 'w') as f:
+with open(os.path.join(path_stats, "films_statistics.txt"), 'w') as f:
     f.write(statistics_string)
 
 # Plot filme length
