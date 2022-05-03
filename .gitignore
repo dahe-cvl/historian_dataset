@@ -1,5 +1,9 @@
 films/
 annotations/
+annotations_extended/
+Evaluation/
+films_extended/
+ICIP_Overscans
 statistics/
 visualizations/
 historian_dataset_v1_tiny_pre/
@@ -16,6 +20,7 @@ annotations_old/
 HISTORIAN_2022-02-19.xlsx
 metadata_old.*
 SUS_SS2022_object_detection_dataset/
+metadata_OSD_NEW.csv
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
