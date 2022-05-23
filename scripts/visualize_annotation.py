@@ -22,6 +22,10 @@ path_films = r"./films"
 path_shot_annotations = r"./annotations/manual"
 path_cmc_annotations = r"./annotations/camera_annotations_manual"
 path_osd_annotations = r"./annotations/overscan_manual"
+
+# path_osd_annotations = r"/caa/Homes01/fjogl/SprocketHolesFinder/Weak_annotations"
+# path_osd_annotations = r"/caa/Homes01/fjogl/SprocketHolesFinder/Output"
+
 path_output = r"./Evaluation/Visualizations"
 
 
@@ -105,16 +109,28 @@ def main():
             else:
                 next_shot_in = "N/A"
 
+            # Find the relevant OSD annotation
+            relevant_osd = None
             if has_osd_annotation:
-                relevant_osd = list(filter(lambda o: int(o["meta_info"]["frmId"]) <= frame, osd))
+                # Case 1: we have annotations in this shot
+                osds_in_this_shot = list(filter(lambda o: int(o["meta_info"]["shotId"]) == relevant_shot[0]["shotId"], osd))
 
-                # If there exists an OSD annotation before the current frame we use that
-                if len(relevant_osd) > 0:
-                    relevant_osd.sort(key=lambda o: int(o["meta_info"]["frmId"]), reverse=True)
-                    relevant_osd = relevant_osd[0]
-                # Otherwise we use the earliest OSD (they are sorted by frame)
-                else:
-                    relevant_osd = osd[0]
+                if len(osds_in_this_shot) > 0:
+                    osds_in_this_shot.sort(key=lambda o: int(o["meta_info"]["frmId"]))
+                    relevant_osd = osds_in_this_shot[0]
+
+                # Case 2: we have annotations before this shot, then we take the closest to the current shot (framewise)
+                if relevant_osd is None:
+                    osds_before_this_shot = list(filter(lambda o: int(o["meta_info"]["shotId"]) < relevant_shot[0]["shotId"], osd))
+                    osds_before_this_shot.sort(key=lambda o: int(o["meta_info"]["frmId"]))
+                    if len(osds_before_this_shot) > 0:
+                        relevant_osd = osds_before_this_shot[-1]
+
+                # Case 3: we take an annotation after this shot
+                if relevant_osd is None:
+                    osds_after_this_shot = list(filter(lambda o: int(o["meta_info"]["shotId"]) > relevant_shot[0]["shotId"], osd))
+                    osds_after_this_shot.sort(key=lambda o: int(o["meta_info"]["frmId"]))
+                    relevant_osd = osds_after_this_shot[0]
 
                 blank_canvas = np.zeros_like(img, np.uint8)
                 for region in relevant_osd["regions"]:
