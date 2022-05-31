@@ -5,9 +5,7 @@ The official code repository for the historian dataset of the "HISTORIAN: A Larg
 
 This repository contains all scripts to generate, evaluate and visualize the dataset from our data (meaning annotations and films). You do not need this repository to use our data. Explanations of how the data is structured are under `Dataset Structure` below.
 
-
 <img src="imgs/film_vis_4.png" alt="Results" width="250"> <img src="imgs/film_vis_5.png" alt="Results" width="250"> <img src="imgs/film_vis_6.png" alt="Results" width="250">
-
 
 ## How to install
 Installing this code is not necessary to use our dataset. 
@@ -31,7 +29,6 @@ The data is split into the directories `Films` and `Annotations`.
 8367_NARA_LID-111-OF-11-R02_FGMC_NAID-36077_OFMID-1603882747755_H264_1440x1080_AAC-stereo_24fps_12Mbit_GOP01_crop_AC-VHH-P_OFM_2021-10-28.mp4).m4v
 ```
 is 8367. This VID can be used to identify the correspond annotations.
-
 
 `Annotations` contains manual and automatic annotations of the 98 films. The annotations are organized into directories. Each directory contains annotations of a specific type that can be mapped to a film via a VID. Note that not every type of annotation is available for each film as, for example, not every film has camera movements or overscan area.
 
@@ -104,10 +101,9 @@ If you use our data, code or ideas, please cite
 ## Background
 This work is part of the [`Visual History of the Holocaust`](https://www.vhh-project.eu/) project. The raw data is from [VHH-MMSI](https://www.vhh-mmsi.eu). Automatic annotations were obtained with our own tools:
 - [vhh_sbd](https://github.com/dahe-cvl/vhh_sbd) computes shot boundaries, that is, it splits a given film into different shots.
-- [vhh_stc](https://github.com/dahe-cvl/vhh_sbd) classifies shots into different types, for example "text" for shots that display mainly text (e.g. in titles) and "close up" for shots featuring the subject of interest close to the camera.
+- [vhh_stc](https://github.com/dahe-cvl/vhh_stc) classifies shots into different types, for example "text" for shots that display mainly text (e.g. in titles) and "close up" for shots featuring the subject of interest close to the camera.
 - [vhh_cmc](https://github.com/dahe-cvl/vhh_cmc) can detect camera movements in a film.
 - [vhh_core](https://github.com/dahe-cvl/vhh_core) combines all of these programs for ease of use.
-
 
 ## Acknowledgements
 Visual History of the Holocaust: Rethinking Curation in the Digital Age. This project has received funding from the European Union’s Horizon 2020 research and innovation program under the Grant Agreement.
