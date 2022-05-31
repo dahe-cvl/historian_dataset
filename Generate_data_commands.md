@@ -1,3 +1,4 @@
+*Disclaimer: This list is mostly meant to allow us to replicate the dataset generation.*
 # Setup
 
 1. Create a python environment and install the required packages.
