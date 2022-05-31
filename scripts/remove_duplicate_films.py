@@ -5,8 +5,8 @@ Find and remove duplicate films from the dataset, that is video files that corre
 import os, glob, re, json
 
 path_films = r"./films"
-path_auto_annotations = r"./annotations/automatic"
-path_manual_annotations = r"./annotations/manual"
+path_auto_annotations = r"./annotations/shot-annotations_automatic"
+path_manual_annotations = r"./annotations/shot-annotations_manual"
 path_metadata_csv = "metadata.csv"
 path_metadata_json = "metadata.json"
 

@@ -12,7 +12,7 @@ from sklearn.metrics import classification_report, confusion_matrix
 import sklearn.metrics as metrics
 
 paths_auto_stc  = r"./Evaluation/STC_Data"
-paths_manu_stc = r"./annotations/manual"
+paths_manu_stc = r"./annotations/shot-annotations_manual"
 
 def main():
     # Check that we have a manual annotation for each auto annotations

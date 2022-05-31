@@ -8,8 +8,8 @@ import glob
 import json
 
 path_films = r"./films"
-path_auto_annotations = r"./annotations/automatic"
-path_manual_annotations = r"./annotations/manual"
+path_auto_annotations = r"./annotations/shot-annotations_automatic"
+path_manual_annotations = r"./annotations/shot-annotations_manual"
 path_overscan_annotations = r"./annotations/overscan_manual"
 
 path_metadata_csv = "metadata.csv"

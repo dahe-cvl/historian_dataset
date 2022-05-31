@@ -17,6 +17,7 @@ Installing this code is not necessary to use our dataset.
 - Activate virtual environment ```source venv/bin/activate```
 - Install requirements ```pip install -r requirements.txt```
 - Download data from the link above. Copy the content of the dataset into the repository directory. Afterwards, this directory should contain an `Films` and `Annotations` folder.
+- If you intend to run some of our scripts please use ```python scripts/create_dirs.py``` to generate all directories that might be necessary.
 
 ## Dataset Structure
 The following depicts a frame of a filme together with a visualization of annotations.
@@ -33,7 +34,7 @@ is 8367. This VID can be used to identify the correspond annotations.
 `Annotations` contains manual and automatic annotations of the 98 films. The annotations are organized into directories. Each directory contains annotations of a specific type that can be mapped to a film via a VID. Note that not every type of annotation is available for each film as, for example, not every film has camera movements or overscan area.
 
 
-`automatic` and `manual` contain shot annotations obtained via automatic or manual annotation, respectively. Each file splits a film into a series of shots and assigns a shot type to each film. For example the following
+`shot-annotations_automatic` and `shot-annotations_manual` contain shot annotations obtained via automatic or manual annotation, respectively. Each file splits a film into a series of shots and assigns a shot type to each film. For example the following
 ```
 {
         "shotId": 5,
@@ -80,7 +81,7 @@ Use it via
 ```
 python sprocketHolesFinder.py $path_film $path_osd $path_sbd $path_output
 ```
-Where $path_film points to the a film (in `Films`), $path_osd points to the overscan annotation, $path_sbd (in `overscan_manual`) points to the shot annotations (found in `automatic` / `manual`)  $path_output is the path to a file that should store the output.
+Where $path_film points to the a film (in `Films`), $path_osd points to the overscan annotation, $path_sbd (in `overscan_manual`) points to the shot annotations (found in `shot-annotations_automatic` / `shot-annotations_manual`)  $path_output is the path to a file that should store the output.
 
 Finally, the file ```Generate_data_commands.md``` contains information how scripts were used to generate the data. 
 

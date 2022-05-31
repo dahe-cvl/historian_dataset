@@ -18,7 +18,7 @@ import csv
 from extract_evaluation_data import store_snippet
 
 
-path_manual_annotations = r"./annotations/manual"
+path_manual_annotations = r"./annotations/shot-annotations_manual"
 path_films = r"./films"
 path_camera_annotations = r"./eval_cmc/annotations_per_vid_12022022"
 path_tiny_dataset = r"./tiny_dataset"

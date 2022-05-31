@@ -9,7 +9,7 @@ import csv
 import cv2
 
 path_metadata = r"metadata_OSD_NEW.csv"
-path_films = r"./films_extended"
+path_films = r"./films"
 path_output = r"./tmp_overscan_films/Selected_Frames_14032022_extended"
 
 def main():

@@ -7,11 +7,9 @@ import os
 import glob
 import json
 
-path_auto_annotations = r"./annotations/automatic"
-path_manual_annotations = r"./annotations/manual"
+path_auto_annotations = r"./annotations/shot-annotations_automatic"
+path_manual_annotations = r"./annotations/shot-annotations_manual"
 path_videos = r"./films"
-
-path_manual_annotations_films = r"./statistics/films_with_manual_annotations.txt"
 
 auto_paths = glob.glob(os.path.join(path_auto_annotations, "*-shot_annotations.json"))
 manual_paths = glob.glob(os.path.join(path_manual_annotations, "*-shot_annotations.json"))

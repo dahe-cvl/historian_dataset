@@ -14,6 +14,8 @@ import numpy as np
 import cv2
 from tqdm import tqdm
 
+path_films = r"./films"
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -24,8 +26,7 @@ def main():
     args = parser.parse_args()
 
     dir_stc = r"./Evaluation_STC"
-    path_auto_annotations = r"./annotations/automatic"
-    path_films = r"./films"
+    path_auto_annotations = r"./annotations/shot-annotations_automatic"
 
     if not os.path.isdir(dir_stc):
         os.mkdir(dir_stc)

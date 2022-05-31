@@ -10,7 +10,7 @@ Also removes 1 from inPoint and outPoint s.t. the first frame is 0.
 
 import os, glob, json
 
-path_auto_annotations = r"./annotations/automatic"
+path_auto_annotations = r"./annotations/shot-annotations_automatic"
 
 ##########################
 # MAIN SECTION

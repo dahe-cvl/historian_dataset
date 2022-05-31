@@ -2,10 +2,10 @@
 
 """
 
-path_auto_annotations = r"./annotations/automatic"
-path_manual_annotations = r"./annotations/manual"
-path_vis = r"./Evaluation/Visualizations"
-path_stats = r"./Evaluation"
+path_auto_annotations = r"./annotations/shot-annotations_automatic"
+path_manual_annotations = r"./annotations/shot-annotations_manual"
+path_vis = r"./visualizations"
+path_stats = r"./statistics"
 
 format = ".pdf"
 dpi = 300

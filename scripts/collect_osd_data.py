@@ -8,7 +8,7 @@ raw_data_paths = [
                     ]
 output_path = r"./annotations/overscan_manual"
 films_path = r"./films"
-shots_path = r"./annotations/manual"
+shots_path = r"./annotations/shot-annotations_manual"
 
 import os
 import json

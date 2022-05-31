@@ -3,7 +3,7 @@
     (similar to create_tiny_datastet.py but only for CMC)
 """
 
-path_manual_annotations = r"./annotations/manual"
+path_manual_annotations = r"./annotations/shot-annotations_manual"
 path_camera_annotations = r"./eval_cmc/all_annotations_per_vid_09032022"
 path_cmc_output = r"./annotations/camera_annotations_manual"
 

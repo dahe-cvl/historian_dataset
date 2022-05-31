@@ -19,14 +19,14 @@ import numpy as np
 from itertools import count
 
 path_films = r"./films"
-path_shot_annotations = r"./annotations/manual"
+path_shot_annotations = r"./annotations/shot-annotations_manual"
 path_cmc_annotations = r"./annotations/camera_annotations_manual"
 path_osd_annotations = r"./annotations/overscan_manual"
 
 # path_osd_annotations = r"/caa/Homes01/fjogl/SprocketHolesFinder/Weak_annotations"
 # path_osd_annotations = r"/caa/Homes01/fjogl/SprocketHolesFinder/Output"
 
-path_output = r"./Evaluation/Visualizations"
+path_output = r"./visualizations"
 
 
 def main():
