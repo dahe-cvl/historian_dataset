@@ -6,9 +6,7 @@ The official code repository for the historian dataset of the "HISTORIAN: A Larg
 This repository contains all scripts to generate, evaluate and visualize the dataset from our data (meaning annotations and films). You do not need this repository to use our data. Explanations of how the data is structured are under `Dataset Structure` below.
 
 
-<img src="imgs/film_vis_4.png" alt="Results" width="250">
-<img src="imgs/film_vis_5.png" alt="Results" width="250">
-<img src="imgs/film_vis_6.png" alt="Results" width="250">
+<img src="imgs/film_vis_4.png" alt="Results" width="250"> <img src="imgs/film_vis_5.png" alt="Results" width="250"> <img src="imgs/film_vis_6.png" alt="Results" width="250">
 
 
 ## How to install
