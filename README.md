@@ -107,5 +107,6 @@ This work is part of the [`Visual History of the Holocaust`](https://www.vhh-pro
 - [vhh_core](https://github.com/dahe-cvl/vhh_core) combines all of these programs for ease of use.
 
 ## Acknowledgements
-Visual History of the Holocaust: Rethinking Curation in the Digital Age. This project has received funding from the European Union’s Horizon 2020 research and innovation program under the Grant Agreement.
+Visual History of the Holocaust: Rethinking Curation in the Digital Age. This project has received funding from the EU’s Horizon 2020 research and
+innovation program under the Grant Agreement 822670. Special thanks to Jakob Zenzmaier (Key Researcher - Ludwig Boltzmann Institute for Digital History, Vienna).
 
